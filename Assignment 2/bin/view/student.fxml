@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?> 
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.collections.*?> 
+
+<VBox fx:controller="controller.StudentController" xmlns:fx="http://javafx.com/fxml">
+	<HBox alignment="top_left" spacing="400" styleClass="header">
+		<Text text="${'Logged in as ' + controller.student.name}"  styleClass="heading"/>
+		<GridPane styleClass="GridPane" hgap="10" vgap="10">
+			<Label text="Student number: " GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+			<Text text="${controller.student.number}" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+			<Label text="Attendance: " GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+			<Text text="${controller.student.attendance}" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+			<Label text="Scholarship: " GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+			<Text text="${controller.student.scholar}" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+		</GridPane>
+	</HBox>
+	
+	<HBox alignment="center">
+	<padding><Insets top="10" bottom="10"/></padding>
+		<HBox alignment="baseline_left">
+			<Text text="My Activities" styleClass="heading"/>
+		</HBox>
+		<HBox fx:id="tableSpacer1"/>
+		<HBox alignment="baseline_right">
+			<Button fx:id="withdrawBtn" disable="true" text="Withdraw" styleClass ="button" onAction="#handleWithdraw"/>
+		</HBox>
+	</HBox>
+	
+	<HBox alignment="center">
+		<TableView fx:id="activitiesTv" prefHeight="200">
+			<placeholder>
+				<Text text="Not enrolled in any activities"/>
+			</placeholder>
+			<columns>
+				<TableColumn text="Subject">
+					<cellValueFactory>
+						<PropertyValueFactory property="subjectNumber"/>
+					</cellValueFactory>
+				</TableColumn>
+				<TableColumn text="Group">
+					<cellValueFactory>
+						<PropertyValueFactory property="group"/>
+					</cellValueFactory>
+				</TableColumn>
+				<TableColumn text="Activity">
+					<cellValueFactory>
+						<PropertyValueFactory property="number"/>
+					</cellValueFactory>
+				</TableColumn>
+				<TableColumn text="Day">
+					<cellValueFactory>
+						<PropertyValueFactory property="day"/>
+					</cellValueFactory>
+				</TableColumn>
+				<TableColumn text="Start">
+					<cellValueFactory>
+						<PropertyValueFactory property="start"/>
+					</cellValueFactory>
+				</TableColumn>
+				<TableColumn text="Duration">
+					<cellValueFactory>
+						<PropertyValueFactory property="duration"/>
+					</cellValueFactory>
+				</TableColumn>
+				<TableColumn text="Room">
+					<cellValueFactory>
+						<PropertyValueFactory property="room"/>
+					</cellValueFactory>
+				</TableColumn>
+				<TableColumn text="Capacity">
+					<cellValueFactory>
+						<PropertyValueFactory property="capacity"/>
+					</cellValueFactory>
+				</TableColumn>
+				<TableColumn text="Enrolled">
+					<cellValueFactory>
+						<PropertyValueFactory property="enrolled"/>
+					</cellValueFactory>
+				</TableColumn>
+			</columns>
+		</TableView>
+	</HBox>
+	
+	<HBox alignment="center">
+	<padding><Insets top="10" bottom="10"/></padding>
+		<HBox alignment="center_left" spacing="10">
+			<Text text="Enrol into subject" styleClass="heading"/>
+			<ComboBox fx:id="enrolCmb" promptText="Choose" items="${controller.student.university.subjects}" onAction="#handleComboBox"/>
+		</HBox>
+		<HBox fx:id="tableSpacer2"/>
+		<HBox alignment="baseline_right">
+			<Button fx:id="enrolBtn" disable="true" text="Enrol" styleClass ="button" onAction="#handleEnrol"/>
+		</HBox>
+	</HBox>
+	
+	<HBox alignment="center">
+	<padding><Insets top="10" bottom="10"/></padding>
+		<TableView fx:id="subjectTv" prefHeight="200" onMouseClicked="#handleClickTable">
+			<placeholder>
+				<Text text=" "/>
+			</placeholder>
+			<columns>
+				<TableColumn text="Subject">
+					<cellValueFactory>
+						<PropertyValueFactory property="subjectNumber"/>
+					</cellValueFactory>
+				</TableColumn>
+				<TableColumn text="Group">
+					<cellValueFactory>
+						<PropertyValueFactory property="group"/>
+					</cellValueFactory>
+				</TableColumn>
+				<TableColumn text="Activity">
+					<cellValueFactory>
+						<PropertyValueFactory property="number"/>
+					</cellValueFactory>
+				</TableColumn>
+				<TableColumn text="Day">
+					<cellValueFactory>
+						<PropertyValueFactory property="day"/>
+					</cellValueFactory>
+				</TableColumn>
+				<TableColumn text="Start">
+					<cellValueFactory>
+						<PropertyValueFactory property="start"/>
+					</cellValueFactory>
+				</TableColumn>
+				<TableColumn text="Duration">
+					<cellValueFactory>
+						<PropertyValueFactory property="duration"/>
+					</cellValueFactory>
+				</TableColumn>
+				<TableColumn text="Room">
+					<cellValueFactory>
+						<PropertyValueFactory property="room"/>
+					</cellValueFactory>
+				</TableColumn>
+				<TableColumn text="Capacity">
+					<cellValueFactory>
+						<PropertyValueFactory property="capacity"/>
+					</cellValueFactory>
+				</TableColumn>
+				<TableColumn text="Enrolled">
+					<cellValueFactory>
+						<PropertyValueFactory property="enrolled"/>
+					</cellValueFactory>
+				</TableColumn>
+			</columns>
+		</TableView>
+	</HBox>
+	<padding><Insets top="10"/></padding>
+	<HBox alignment="center" styleClass="footer">
+		<Button fx:id="logoutBtn" text="Logout" styleClass="Button" onAction="#handleLogout"/>
+	</HBox>
+	
+	<stylesheets>
+    	<URL value="@style.css"/>
+    </stylesheets>
+</VBox>
